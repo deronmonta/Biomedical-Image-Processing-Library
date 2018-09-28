@@ -216,17 +216,17 @@ def get_patch_from_coord(volume, coord, window_size = 10):
     return patch
 
 
-def rescale_volume(volume, old_spacing, new_spacing, order):
+def rescale_volume(volume, old_dimension, new_dimension, order):
     '''
     Rescale a volume according to new spacing 
     Args:
         volume: 
-        old_spacing: []
-        new_spacing: [] 
+        old_dimension: []
+        new_dimension: [] 
         order: order of the spline interpolation
     '''
-    target_shape = np.round(volume.shape * old_spacing / new_spacing)
-    true_spacing = old_spacing * volume.shape / target_shape
+    target_shape = np.round(volume.shape * old_dimension / new_dimension)
+    true_spacing = old_dimension * volume.shape / target_shape
     resize_factor = target_shape / volume.shape
     rescaled_volume = zoom(volume, resize_factor, mode = 'nearest',order=order)
 
